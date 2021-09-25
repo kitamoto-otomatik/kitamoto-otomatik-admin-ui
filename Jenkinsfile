@@ -31,17 +31,23 @@ pipeline {
                 }
             }
         }
-        stage('Deploy Application') {
-            steps('Delete Deployment') {
+        stage('Delete Deployment') {
+            steps {
                 bat 'kubectl delete deployments kitamoto-otomatik-admin-ui'
             }
-            steps('Delete Service') {
+        }
+        stage('Delete Service') {
+            steps {
                 bat 'kubectl delete service kitamoto-otomatik-admin-ui'
             }
-            steps('Create Deployment') {
+        }
+        stage('Create Deployment') {
+            steps {
                 bat 'kubectl apply -f kubernetes/deployment.yaml'
             }
-            steps('Create Service') {
+        }
+        stage('Create Service') {
+            steps {
                 bat 'kubectl apply -f kubernetes/service.yaml'
             }
         }
