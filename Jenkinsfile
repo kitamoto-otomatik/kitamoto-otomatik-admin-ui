@@ -12,7 +12,7 @@ pipeline {
                 bat 'npm run build'
             }
         }
-        stage('Build and Push Image') {
+        stage('Build Image') {
             steps {
                 script {
                     docker.withRegistry('', 'docker_credentials') { 
