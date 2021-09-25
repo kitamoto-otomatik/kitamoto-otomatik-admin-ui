@@ -25,8 +25,8 @@ pipeline {
         stage('Deploy Image') {
             steps {
                 withKubeConfig([credentialsId: 'kubernetes_credentials', serverUrl: kubernetes_url]) {
-                    bat 'kubectl delete service kitamoto-otomatik-admin-ui'
-                    bat 'kubectl delete deployments kitamoto-otomatik-admin-ui'
+                    bat 'kubectl delete service ' + app_name
+                    bat 'kubectl delete deployments ' + app_name
                     bat 'kubectl apply -f kubernetes/deployment.yaml'
                     bat 'kubectl apply -f kubernetes/service.yaml'
                 }
