@@ -1,7 +1,6 @@
 pipeline {
-    environment { 
-        imageRegistryUrl = "nikkinicholasromero/kitamoto-otomatik-admin-ui" 
-        imageRegistryCredential = 'docker_credentials' 
+    environment {
+      app_name = 'kitamoto-otomatik-admin-ui'
     }
     agent any
     stages {
@@ -22,9 +21,12 @@ pipeline {
         }
         stage('Build and Push Image') {
             steps {
-                script {
-                    docker.withRegistry('', imageRegistryCredential) { 
-                        def image = docker.build(imageRegistryUrl)
+                  script {
+                    def url = "nikkinicholasromero/" + app_name 
+                    def credentials = 'docker_credentials' 
+                    
+                    docker.withRegistry('', credentials) { 
+                        def image = docker.build(url)
                         image.push()
                     }
                 }
