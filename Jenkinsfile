@@ -21,7 +21,7 @@ pipeline {
         }
         stage('Build and Push Image') {
             steps {
-                  script {
+                script {
                     def url = "nikkinicholasromero/" + app_name 
                     def credentials = 'docker_credentials' 
                     
