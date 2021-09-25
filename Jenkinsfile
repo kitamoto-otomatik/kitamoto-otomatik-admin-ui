@@ -16,7 +16,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('', 'docker_credentials') { 
-                        def image = docker.build("nikkinicholasromero/" + app_name )
+                        def image = docker.build("nikkinicholasromero/" + app_name)
                         image.push()
                     }
                 }
