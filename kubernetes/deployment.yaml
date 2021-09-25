@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kitamoto-otomatik-admin-ui
+  labels:
+    app: kitamoto-otomatik-admin-ui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kitamoto-otomatik-admin-ui
+  template:
+    metadata:
+      labels:
+        app: kitamoto-otomatik-admin-ui
+    spec:
+      containers:
+      - name: kitamoto-otomatik-admin-ui
+        image: nikkinicholasromero/kitamoto-otomatik-admin-ui
+        ports:
+        - containerPort: 80

@@ -32,8 +32,17 @@ pipeline {
             }
         }
         stage('Deploy Application') {
-            steps {
-                bat 'docker run -d -t -p 127.0.0.1:80:80 --name kitamoto-otomatik-admin-ui nikkinicholasromero/kitamoto-otomatik-admin-ui'
+            steps('Delete Deployment') {
+                bat 'kubectl delete deployments kitamoto-otomatik-admin-ui'
+            }
+            steps('Delete Service') {
+                bat 'kubectl delete service kitamoto-otomatik-admin-ui'
+            }
+            steps('Create Deployment') {
+                bat 'kubectl apply -f kubernetes/deployment.yaml'
+            }
+            steps('Create Service') {
+                bat 'kubectl apply -f kubernetes/service.yaml'
             }
         }
     }
