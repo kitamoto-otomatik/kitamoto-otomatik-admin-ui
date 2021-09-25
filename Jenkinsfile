@@ -5,18 +5,10 @@ pipeline {
     }
     agent any
     stages {
-        stage('Install Dependencies') {
-            steps {
-                bat 'npm install'
-            }
-        }
-        stage('Run Tests') {
-            steps {
-                bat 'npm test'
-            }
-        }
         stage('Build Application') {
             steps {
+                bat 'npm install'
+                bat 'npm test'
                 bat 'npm run build'
             }
         }
@@ -30,10 +22,13 @@ pipeline {
                 }
             }
         }
-        stage('Delete Service') {
+        stage('Deploy Image') {
             steps {
                 withKubeConfig([credentialsId: 'kubernetes_credentials', serverUrl: kubernetes_url]) {
                     bat 'kubectl delete service kitamoto-otomatik-admin-ui'
+                    bat 'kubectl delete deployments kitamoto-otomatik-admin-ui'
+                    bat 'kubectl apply -f kubernetes/deployment.yaml'
+                    bat 'kubectl apply -f kubernetes/service.yaml'
                 }
             }
         }
