@@ -1,6 +1,7 @@
 pipeline {
     environment {
       app_name = 'kitamoto-otomatik-admin-ui'
+      kubernetes_url = 'http://localhost:9001'
     }
     agent any
     stages {
@@ -22,13 +23,17 @@ pipeline {
         stage('Build and Push Image') {
             steps {
                 script {
-                    def url = "nikkinicholasromero/" + app_name 
-                    def credentials = 'docker_credentials' 
-                    
-                    docker.withRegistry('', credentials) { 
-                        def image = docker.build(url)
+                    docker.withRegistry('', 'docker_credentials') { 
+                        def image = docker.build("nikkinicholasromero/" + app_name )
                         image.push()
                     }
+                }
+            }
+        }
+        stage('Delete Service') {
+            steps {
+                withKubeConfig([credentialsId: 'kubernetes_credentials', serverUrl: kubernetes_url]) {
+                    bat 'kubectl delete service kitamoto-otomatik-admin-ui'
                 }
             }
         }
