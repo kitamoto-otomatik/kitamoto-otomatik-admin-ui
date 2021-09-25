@@ -31,14 +31,14 @@ pipeline {
                 }
             }
         }
-        stage('Delete Deployment') {
-            steps {
-                bat 'kubectl delete deployments kitamoto-otomatik-admin-ui'
-            }
-        }
         stage('Delete Service') {
             steps {
                 bat 'kubectl delete service kitamoto-otomatik-admin-ui'
+            }
+        }
+        stage('Delete Deployment') {
+            steps {
+                bat 'kubectl delete deployments kitamoto-otomatik-admin-ui'
             }
         }
         stage('Create Deployment') {
