@@ -1,7 +1,6 @@
 pipeline {
     environment {
       app_name = 'kitamoto-otomatik-admin-ui'
-      kubernetes_url = 'http://localhost:9001'
     }
     agent any
     stages {
@@ -24,7 +23,7 @@ pipeline {
         }
         stage('Deploy Image') {
             steps {
-                withKubeConfig([credentialsId: 'kubernetes_credentials', serverUrl: kubernetes_url]) {
+                withKubeConfig([credentialsId: 'kubernetes_credentials', serverUrl: 'http://localhost:9001']) {
                     bat 'kubectl delete service --ignore-not-found=true ' + app_name
                     bat 'kubectl delete deployments --ignore-not-found=true ' + app_name
                     bat 'kubectl apply -f kubernetes/deployment.yaml'
