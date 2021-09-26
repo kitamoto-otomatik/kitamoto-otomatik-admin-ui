@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   namespace: kitamoto-otomatik
-  name: ${APP_NAME}
+  name: kitamoto-otomatik-admin-ui
   labels:
     app: kitamoto-otomatik-admin-ui
 spec:
@@ -16,7 +16,7 @@ spec:
         app: kitamoto-otomatik-admin-ui
     spec:
       containers:
-      - name: ${APP_NAME}
-        image: nikkinicholasromero/${APP_NAME}:${BUILD_NUMBER}
+      - name: kitamoto-otomatik-admin-ui
+        image: nikkinicholasromero/kitamoto-otomatik-admin-ui:${BUILD_NUMBER}
         ports:
         - containerPort: 80
