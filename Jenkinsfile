@@ -1,7 +1,8 @@
+script {
+    env.APP_NAME = "kitamoto-otomatik-admin-ui"
+}
+
 pipeline {
-    script {
-      env.APP_NAME = "kitamoto-otomatik-admin-ui"
-    }
     agent any
     stages {
         stage("Build Application") {
