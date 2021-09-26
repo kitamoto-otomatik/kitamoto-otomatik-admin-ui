@@ -1,6 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  namespace: kitamoto-otomatik
   name: kitamoto-otomatik-admin-ui
   labels:
     app: kitamoto-otomatik-admin-ui
