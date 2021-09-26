@@ -23,7 +23,7 @@ pipeline {
         }
         stage("Deploy Image") {
             steps {
-                withKubeConfig([credentialsId: "kubernetes_credentials", serverUrl: "http://localhost:9001"]) {
+                withKubeConfig([credentialsId: "kubernetes_credentials", serverUrl: ${BUILD_NUMBER}]) {
                     bat "kubectl delete service --ignore-not-found=true ${app_name}"
                     bat "kubectl delete deployments --ignore-not-found=true ${app_name}"
                     bat "kubectl apply -f kubernetes/deployment.yaml"
