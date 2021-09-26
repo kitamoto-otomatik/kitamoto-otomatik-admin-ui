@@ -2,21 +2,21 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   namespace: kitamoto-otomatik
-  name: kitamoto-otomatik-admin-ui
+  name: ${APP_NAME}
   labels:
-    app: kitamoto-otomatik-admin-ui
+    app: ${APP_NAME}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: kitamoto-otomatik-admin-ui
+      app: ${APP_NAME}
   template:
     metadata:
       labels:
-        app: kitamoto-otomatik-admin-ui
+        app: ${APP_NAME}
     spec:
       containers:
-      - name: kitamoto-otomatik-admin-ui
-        image: nikkinicholasromero/kitamoto-otomatik-admin-ui:${BUILD_NUMBER}
+      - name: ${APP_NAME}
+        image: nikkinicholasromero/${APP_NAME}:${BUILD_NUMBER}
         ports:
         - containerPort: 80
