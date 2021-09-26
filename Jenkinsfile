@@ -1,5 +1,5 @@
 pipeline {
-    environment {
+    script {
       env.APP_NAME = "kitamoto-otomatik-admin-ui"
     }
     agent any
