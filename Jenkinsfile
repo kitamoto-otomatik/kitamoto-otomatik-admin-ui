@@ -1,6 +1,6 @@
 pipeline {
     environment {
-      APP_NAME = "kitamoto-otomatik-admin-ui"
+      env.APP_NAME = "kitamoto-otomatik-admin-ui"
     }
     agent any
     stages {
