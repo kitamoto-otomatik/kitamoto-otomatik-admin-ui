@@ -15,8 +15,8 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry("", "docker_credentials") {
-                      image = docker.build("${DOCKER_REPOSITORY}/${APP_NAME}")
-                        image.push()
+                      image = docker.build("${DOCKER_REPOSITORY}/${APP_NAME}:${BUILD_NUMBER}")
+                      image.push("${BUILD_NUMBER}")
                     }
                 }
             }
