@@ -1,6 +1,6 @@
 pipeline {
     environment {
-      app_name = "kitamoto-otomatik-admin-ui"
+      APP_NAME = "kitamoto-otomatik-admin-ui"
     }
     agent any
     stages {
@@ -15,7 +15,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry("", "docker_credentials") {
-                      image = docker.build("nikkinicholasromero/${app_name}")
+                      image = docker.build("${DOCKER_REPOSITORY}/${APP_NAME}")
                         image.push()
                     }
                 }
@@ -24,8 +24,8 @@ pipeline {
         stage("Deploy Image") {
             steps {
                 withKubeConfig([credentialsId: "kubernetes_credentials", serverUrl: "${KUBERNETES_HOME}"]) {
-                    bat "kubectl delete service --ignore-not-found=true ${app_name}"
-                    bat "kubectl delete deployments --ignore-not-found=true ${app_name}"
+                    bat "kubectl delete service --ignore-not-found=true ${APP_NAME}"
+                    bat "kubectl delete deployments --ignore-not-found=true ${APP_NAME}"
                     bat "kubectl apply -f kubernetes/deployment.yaml"
                     bat "kubectl apply -f kubernetes/service.yaml"
                 }
