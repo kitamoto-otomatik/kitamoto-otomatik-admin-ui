@@ -17,6 +17,6 @@ spec:
     spec:
       containers:
       - name: kitamoto-otomatik-admin-ui
-        image: nikkinicholasromero/kitamoto-otomatik-admin-ui:${BUILD_NUMBER}
+        image: nikkinicholasromero/kitamoto-otomatik-admin-ui:latest
         ports:
         - containerPort: 80
