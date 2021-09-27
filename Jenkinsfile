@@ -1,4 +1,3 @@
-
 pipeline {
     environment {
         APP_NAME = "kitamoto-otomatik-admin-ui"
