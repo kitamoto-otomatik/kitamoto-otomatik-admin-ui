@@ -8,7 +8,7 @@ pipeline {
         stage("Build Application") {
             steps {
                 bat "npm install"
-                bat "npm test"
+                // bat "npm test"
                 bat "npm run build"
             }
         }
