@@ -141,7 +141,7 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
     this.forceFormValidation();
 
     if (this.form.valid) {
-      // Register
+      // TODO : Submit registration
 
       this.showRegistrationForm = false;
       this.showAccountConfirmationForm = true;
