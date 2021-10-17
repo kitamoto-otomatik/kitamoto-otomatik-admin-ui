@@ -62,7 +62,7 @@ export class AuthenticationService {
   public getAccountStatus(username?: string): Observable<Account> {
     const account: Account = {
       username: username,
-      status: "ACTIVE"
+      status: "UNREGISTERED"
     };
 
     return of(account);

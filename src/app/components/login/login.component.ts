@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
   public showAccountConfirmationForm: boolean = false;
   public showPasswordField: boolean = false;
   public showForgotPasswordForm: boolean = false;
+  public showPasswordResetForm: boolean = false;
   
   constructor(
     private fb: FormBuilder,
@@ -152,6 +153,9 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
 
     this.showRegistrationForm = false;
     this.showAccountConfirmationForm = false;
+    this.showPasswordField = false;
+    this.showForgotPasswordForm = false;
+    this.showPasswordResetForm = false;
   }
 
   submitLogin(): void {
@@ -170,6 +174,7 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   sendResetLink(): void {
-    // Reset Link
+    this.showForgotPasswordForm = false;
+    this.showPasswordResetForm = true;
   }
 }

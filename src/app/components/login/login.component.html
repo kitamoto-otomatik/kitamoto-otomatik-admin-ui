@@ -6,7 +6,7 @@
         <div class="card">
             <div class="card-body login-card-body">
                 <form [formGroup]="form">
-                    <div *ngIf="!showRegistrationForm && !showAccountConfirmationForm && !showPasswordField && !showForgotPasswordForm" (keydown)="initialLoginFormKeydown($event)">
+                    <div *ngIf="!showRegistrationForm && !showAccountConfirmationForm && !showPasswordField && !showForgotPasswordForm && !showPasswordResetForm" (keydown)="initialLoginFormKeydown($event)">
                         <p class="login-box-msg">Login Form</p>
                         <div class="form-group">
                             <input type="text" class="form-control" placeholder="Username" formControlName="username" name="username" id="username" #usernameElement
@@ -119,6 +119,14 @@
                                 <p class="mb-0">
                                     <a href="/login" class="text-center">Use a different username</a>
                                 </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="showPasswordResetForm">
+                        <p class="login-box-msg">Please check your email for the password reset link. </p>
+                        <div class="row">
+                            <div class="col-12">
+                                <button type="button" class="btn btn-primary btn-block" (click)="backToLogin()">Back to login</button>
                             </div>
                         </div>
                     </div>
