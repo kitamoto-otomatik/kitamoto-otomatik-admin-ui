@@ -1,6 +1,7 @@
 import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { AuthenticationService } from 'src/app/auth/authentication.service';
+import { RegistrationRequest } from 'src/app/model/registration-request';
 import { AccountService } from 'src/app/services/account.service';
 
 @Component({
@@ -116,7 +117,6 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
     this.forceFormValidation();
     
     if (this.username.valid) {
-      // TODO : Get account status
       this.accountService.getAccountStatus(this.username.value).subscribe(e => {
         this.resetFormValidation();
 
@@ -144,18 +144,25 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
     this.forceFormValidation();
 
     if (this.form.valid) {
-      // TODO : Submit registration
+      const request: RegistrationRequest = {
+        username: this.username.value(),
+        password: this.password.value(),
+        firstName: this.firstName.value(),
+        lastName: this.lastName.value()
+      };
 
-      this.showRegistrationForm = false;
-      this.showRegistrationSuccessfulForm = true;
+      this.accountService.submitRegistration(request).subscribe(() => {
+        this.showRegistrationForm = false;
+        this.showRegistrationSuccessfulForm = true;
+      });
     }
   }
 
   resendVerification(): void {
-    // TODO : Resend verification
-    
-    this.showAccountConfirmationForm = false;
-    this.showVerificationSent = true;
+    this.accountService.resendVerification(this.username.value()).subscribe(() => {
+      this.showAccountConfirmationForm = false;
+      this.showVerificationSent = true;
+    });
   }
 
   backToLogin(): void {
@@ -186,9 +193,9 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   sendResetLink(): void {
-    // TODO : Send reset link
-
-    this.showForgotPasswordForm = false;
-    this.showPasswordResetForm = true;
+    this.accountService.sendResetLink(this.username.value()).subscribe(() => {
+      this.showForgotPasswordForm = false;
+      this.showPasswordResetForm = true;
+    });
   }
 }

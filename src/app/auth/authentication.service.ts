@@ -1,11 +1,10 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable, of, Subscription } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { AuthenticationEvent } from '../model/authentication-event';
 import { AuthenticationRequest } from '../model/authentication-request';
 import { AuthenticationResponse } from '../model/authentication-response';
-import { Account } from '../model/account';
 
 @Injectable({
   providedIn: 'root'
