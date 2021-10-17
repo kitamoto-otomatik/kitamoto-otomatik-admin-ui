@@ -6,7 +6,7 @@
         <div class="card">
             <div class="card-body login-card-body">
                 <form [formGroup]="form">
-                    <div *ngIf="!showRegistrationForm && !showAccountConfirmationForm && !showPasswordField && !showForgotPasswordForm && !showPasswordResetForm" (keydown)="initialLoginFormKeydown($event)">
+                    <div *ngIf="!showRegistrationForm && !showRegistrationSuccessfulForm && !showAccountConfirmationForm && !showVerificationSent && !showPasswordField && !showForgotPasswordForm && !showPasswordResetForm" (keydown)="initialLoginFormKeydown($event)">
                         <p class="login-box-msg">Login Form</p>
                         <div class="form-group">
                             <input type="text" class="form-control" placeholder="Username" formControlName="username" name="username" id="username" #usernameElement
@@ -65,8 +65,25 @@
                             </div>
                         </div>
                     </div>
+                    <div *ngIf="showRegistrationSuccessfulForm">
+                        <p class="login-box-msg">Registration successful. Please check your email for registration confirmation. </p>
+                        <div class="row">
+                            <div class="col-12">
+                                <button type="button" class="btn btn-primary btn-block" (click)="backToLogin()">Back to login</button>
+                            </div>
+                        </div>
+                    </div>
                     <div *ngIf="showAccountConfirmationForm">
-                        <p class="login-box-msg">Please check your email for registration confirmation. </p>
+                        <p class="login-box-msg">You are already registered. Please check your email for registration confirmation. </p>
+                        <div class="row">
+                            <div class="col-12">
+                                <button type="button" class="btn btn-default btn-block" (click)="resendVerification()">Resend verification</button>
+                                <button type="button" class="btn btn-primary btn-block" (click)="backToLogin()">Back to login</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="showVerificationSent">
+                        <p class="login-box-msg">Verification sent. Please check your email for registration confirmation. </p>
                         <div class="row">
                             <div class="col-12">
                                 <button type="button" class="btn btn-primary btn-block" (click)="backToLogin()">Back to login</button>

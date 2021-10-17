@@ -14,7 +14,9 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild("passwordElement") passwordElement!: ElementRef;
 
   public showRegistrationForm: boolean = false;
+  public showRegistrationSuccessfulForm: boolean = false;
   public showAccountConfirmationForm: boolean = false;
+  public showVerificationSent: boolean = false;
   public showPasswordField: boolean = false;
   public showForgotPasswordForm: boolean = false;
   public showPasswordResetForm: boolean = false;
@@ -144,15 +146,22 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
       // TODO : Submit registration
 
       this.showRegistrationForm = false;
-      this.showAccountConfirmationForm = true;
+      this.showRegistrationSuccessfulForm = true;
     }
+  }
+
+  resendVerification(): void {
+    this.showAccountConfirmationForm = false;
+    this.showVerificationSent = true;
   }
 
   backToLogin(): void {
     this.resetFormValidation();
 
     this.showRegistrationForm = false;
+    this.showRegistrationSuccessfulForm = false;
     this.showAccountConfirmationForm = false;
+    this.showVerificationSent = false;
     this.showPasswordField = false;
     this.showForgotPasswordForm = false;
     this.showPasswordResetForm = false;
