@@ -114,7 +114,7 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
     this.forceFormValidation();
     
     if (this.username.valid) {
-      // Get account status
+      // TODO : Get account status
       this.authenticationService.getAccountStatus(this.username.value).subscribe(e => {
         this.resetFormValidation();
 
@@ -125,7 +125,6 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
             this.firstNameElement.nativeElement.focus();
             break;
           case "UNVERIFIED":
-            // Resend confirmation email
             this.showAccountConfirmationForm = true;
             break;
           case "ACTIVE":
@@ -151,6 +150,8 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   resendVerification(): void {
+    // TODO : Resend verification
+    
     this.showAccountConfirmationForm = false;
     this.showVerificationSent = true;
   }
@@ -173,7 +174,7 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
     if (!this.password.errors || !this.password.errors.required) {
       this.password.setErrors({ incorrect: true });
 
-      // Login
+      // TODO : Submit login
     }
   }
 
@@ -183,6 +184,8 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   sendResetLink(): void {
+    // TODO : Send reset link
+
     this.showForgotPasswordForm = false;
     this.showPasswordResetForm = true;
   }
