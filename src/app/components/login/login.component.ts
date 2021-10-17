@@ -1,6 +1,7 @@
 import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { AuthenticationService } from 'src/app/auth/authentication.service';
+import { AccountService } from 'src/app/services/account.service';
 
 @Component({
   selector: 'app-login',
@@ -24,6 +25,7 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
   constructor(
     private fb: FormBuilder,
     private authenticationService: AuthenticationService,
+    private accountService: AccountService,
     private changeDetector : ChangeDetectorRef) {
   }
 
@@ -115,7 +117,7 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
     
     if (this.username.valid) {
       // TODO : Get account status
-      this.authenticationService.getAccountStatus(this.username.value).subscribe(e => {
+      this.accountService.getAccountStatus(this.username.value).subscribe(e => {
         this.resetFormValidation();
 
         switch (e.status) {

@@ -5,7 +5,7 @@ import { BehaviorSubject, Observable, of, Subscription } from 'rxjs';
 import { AuthenticationEvent } from '../model/authentication-event';
 import { AuthenticationRequest } from '../model/authentication-request';
 import { AuthenticationResponse } from '../model/authentication-response';
-import { Account } from './account';
+import { Account } from '../model/account';
 
 @Injectable({
   providedIn: 'root'
@@ -57,14 +57,5 @@ export class AuthenticationService {
     localStorage.removeItem("token");
     localStorage.removeItem("expire");
     this.router.navigate(['/login']);
-  }
-
-  public getAccountStatus(username?: string): Observable<Account> {
-    const account: Account = {
-      username: username,
-      status: "ACTIVE"
-    };
-
-    return of(account);
   }
 }
