@@ -1,14 +1,129 @@
-<p>Login Page</p>
-<form [formGroup]="form">
-    <div class="form-field">
-        <label>Username</label>
-        <input name="username" formControlName="username" type="text">
+<div class="hold-transition login-page">
+    <div class="login-box">
+        <div class="login-logo">
+            Kitamoto-Otomatik
+        </div>
+        <div class="card">
+            <div class="card-body login-card-body">
+                <form [formGroup]="form">
+                    <div *ngIf="!showRegistrationForm && !showAccountConfirmationForm && !showPasswordField && !showForgotPasswordForm" (keydown)="initialLoginFormKeydown($event)">
+                        <p class="login-box-msg">Login Form</p>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Username" formControlName="username" name="username" id="username" #usernameElement
+                                [class.is-invalid]="username.invalid && (username.dirty || username.touched)">
+                            <span id="username-error" class="error invalid-feedback" *ngIf="username.errors?.required">Please enter username</span>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <button type="button" class="btn btn-primary btn-block" (click)="checkAccount()">Login</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="showRegistrationForm" (keydown)="registrationFormKeydown($event)">
+                        <p class="login-box-msg">Registration Form</p>
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" class="form-control" placeholder="Username" 
+                                formControlName="username" name="username" id="username" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <input type="text" class="form-control" placeholder="First Name" formControlName="firstName" name="firstName" id="firstName" #firstNameElement
+                                [class.is-invalid]="firstName.invalid && (firstName.dirty || firstName.touched)">
+                            <span class="error invalid-feedback" *ngIf="firstName.errors?.required">Please enter first name</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" class="form-control" placeholder="Last Name" formControlName="lastName" name="lastName" id="lastName"
+                                [class.is-invalid]="lastName.invalid && (lastName.dirty || lastName.touched)">
+                            <span class="error invalid-feedback" *ngIf="lastName.errors?.required">Please enter last name</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" placeholder="Password" formControlName="password" name="password" id="password"
+                                [class.is-invalid]="password.invalid && (password.dirty || password.touched)">
+                            <span class="error invalid-feedback" *ngIf="password.errors?.required">Please enter password</span>
+                            <span class="error invalid-feedback" *ngIf="password.errors?.minlength">Password must be at least 8 characters long</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirm Password</label>
+                            <input type="password" class="form-control" placeholder="Confirm Password" formControlName="confirmPassword" name="confirmPassword" id="confirmPassword"
+                                [class.is-invalid]="(confirmPassword.invalid || form.errors?.passwordsDoesNotMatch) && (confirmPassword.dirty || confirmPassword.touched)">
+                            <span class="error invalid-feedback" *ngIf="confirmPassword.errors?.required">Please enter confirm password</span>
+                            <span class="error invalid-feedback" *ngIf="confirmPassword.errors?.minlength">Password must be at least 8 characters long</span>
+                            <span class="error invalid-feedback" *ngIf="!confirmPassword.errors?.required && form.errors?.passwordsDoesNotMatch">Passwords does not match</span>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <button type="button" class="btn btn-primary btn-block" (click)="submitRegistration()">Register</button>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col-12">
+                                <a href="/login" class="text-center">Use a different username</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="showAccountConfirmationForm">
+                        <p class="login-box-msg">Please check your email for registration confirmation. </p>
+                        <div class="row">
+                            <div class="col-12">
+                                <button type="button" class="btn btn-primary btn-block" (click)="backToLogin()">Back to login</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="showPasswordField" (keydown)="submitLoginFormKeydown($event)">
+                        <p class="login-box-msg">Login Form</p>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Username"
+                                formControlName="username" name="username" id="username" readonly>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="Password" formControlName="password" name="password" id="password"
+                                [class.is-invalid]="password.invalid && password.errors?.incorrect && (password.dirty || password.touched)" #passwordElement>
+                                <span class="error invalid-feedback" *ngIf="password.errors?.incorrect">Incorrect password</span>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <button type="button" class="btn btn-primary btn-block" (click)="submitLogin()">Login</button>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col-12">
+                                <p class="mb-1">
+                                  <a href="javascript:void(0);" (click)="forgotPassword()">Forgot password</a>
+                                </p>
+                                <p class="mb-0">
+                                    <a href="/login" class="text-center">Use a different username</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="showForgotPasswordForm">
+                        <p class="login-box-msg">Forgot Password</p>
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" class="form-control" placeholder="Username"
+                                formControlName="username" name="username" id="username" readonly>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <button type="button" class="btn btn-primary btn-block" (click)="sendResetLink()">Send reset link</button>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col-12">
+                                <p class="mb-0">
+                                    <a href="/login" class="text-center">Use a different username</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-    <div class="form-field">
-        <label>Password</label>
-        <input name="password" formControlName="password" type="password">
-    </div>
-    <div class="form-buttons">
-        <button class="button button-primary" (click)="login()">Login</button>
-    </div>
-</form>
+</div>

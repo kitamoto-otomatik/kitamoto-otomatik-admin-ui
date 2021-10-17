@@ -27,9 +27,17 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/assets/adminLTE/plugins/fontawesome-free/css/all.min.css",
+              "src/assets/adminLTE/css/adminlte.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/adminLTE/plugins/jquery/jquery.min.js",
+              "src/assets/adminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js",
+              "src/assets/adminLTE/plugins/jquery-validation/jquery.validate.min.js",
+              "src/assets/adminLTE/plugins/jquery-validation/additional-methods.min.js",
+              "src/assets/adminLTE/js/adminlte.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -94,9 +102,17 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/assets/adminLTE/plugins/fontawesome-free/css/all.min.css",
+              "src/assets/adminLTE/css/adminlte.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/adminLTE/plugins/jquery/jquery.min.js",
+              "src/assets/adminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js",
+              "src/assets/adminLTE/plugins/jquery-validation/jquery.validate.min.js",
+              "src/assets/adminLTE/plugins/jquery-validation/additional-methods.min.js",
+              "src/assets/adminLTE/js/adminlte.min.js"
+            ]
           }
         }
       }
