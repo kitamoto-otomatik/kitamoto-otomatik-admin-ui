@@ -21,16 +21,16 @@ export class AccountService {
 
   // TODO : Submit registration
   public submitRegistration(request: RegistrationRequest): Observable<any> {
-    return of(null);
+    return of(1);
   }
 
   // TODO : Resend verification
   public resendVerification(username: string): Observable<any> {
-    return of(null);
+    return of(1);
   }
 
   // TODO : Send reset link
   public sendResetLink(username: string): Observable<any> {
-    return of(null);
+    return of(1);
   }
 }

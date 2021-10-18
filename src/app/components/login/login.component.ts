@@ -145,10 +145,10 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
 
     if (this.form.valid) {
       const request: RegistrationRequest = {
-        username: this.username.value(),
-        password: this.password.value(),
-        firstName: this.firstName.value(),
-        lastName: this.lastName.value()
+        username: this.username.value,
+        password: this.password.value,
+        firstName: this.firstName.value,
+        lastName: this.lastName.value
       };
 
       this.accountService.submitRegistration(request).subscribe(() => {
@@ -159,7 +159,7 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   resendVerification(): void {
-    this.accountService.resendVerification(this.username.value()).subscribe(() => {
+    this.accountService.resendVerification(this.username.value).subscribe(() => {
       this.showAccountConfirmationForm = false;
       this.showVerificationSent = true;
     });
@@ -193,7 +193,7 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   sendResetLink(): void {
-    this.accountService.sendResetLink(this.username.value()).subscribe(() => {
+    this.accountService.sendResetLink(this.username.value).subscribe(() => {
       this.showForgotPasswordForm = false;
       this.showPasswordResetForm = true;
     });
