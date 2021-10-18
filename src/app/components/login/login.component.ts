@@ -166,6 +166,8 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   backToLogin(): void {
+    this.password.setValue("");
+
     this.resetFormValidation();
 
     this.showRegistrationForm = false;
