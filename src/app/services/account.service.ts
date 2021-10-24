@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Account } from '../model/account';
@@ -7,16 +8,12 @@ import { RegistrationRequest } from '../model/registration-request';
   providedIn: 'root'
 })
 export class AccountService {
-  constructor() { }
+  private readonly host: string = "http://localhost:8080";
 
-  // TODO : Get account status
+  constructor(private readonly http: HttpClient) {}
+
   public getAccountStatus(username: string): Observable<Account> {
-    const account: Account = {
-      username: username,
-      status: "ACTIVE"
-    };
-
-    return of(account);
+    return this.http.get<any>(this.host + `/accounts/${username}`);
   }
 
   // TODO : Submit registration
