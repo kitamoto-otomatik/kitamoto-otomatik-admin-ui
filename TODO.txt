@@ -1,1 +1,2 @@
 Add AccountService exception handling
+Create email verification landing page

@@ -194,8 +194,8 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
     this.showForgotPasswordForm = true;
   }
 
-  sendResetLink(): void {
-    this.accountService.sendResetLink(this.username.value).subscribe(() => {
+  sendPasswordResetLink(): void {
+    this.accountService.sendPasswordResetLink(this.username.value).subscribe(() => {
       this.showForgotPasswordForm = false;
       this.showPasswordResetForm = true;
     });
