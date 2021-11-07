@@ -12,6 +12,7 @@
                             <input type="text" class="form-control" placeholder="Username" formControlName="username" name="username" id="username" #usernameElement
                                 [class.is-invalid]="username.invalid && (username.dirty || username.touched)">
                             <span id="username-error" class="error invalid-feedback" *ngIf="username.errors?.required">Please enter username</span>
+                            <span id="username-error" class="error invalid-feedback" *ngIf="username.errors?.email">Please enter a valid email</span>
                         </div>
                         <div class="row">
                             <div class="col-12">

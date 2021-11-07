@@ -8,7 +8,7 @@ import { RegistrationRequest } from '../model/registration-request';
   providedIn: 'root'
 })
 export class AccountService {
-  private readonly host: string = "http://localhost:8080";
+  private readonly host: string = "http://localhost:9080";
 
   constructor(private readonly http: HttpClient) {}
 

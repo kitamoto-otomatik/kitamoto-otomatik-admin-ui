@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
     };
 
     this.form = this.fb.group({
-      username: ['', Validators.required],
+      username: ['', [ Validators.required, Validators.email]],
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       password: ['', [ Validators.required, Validators.minLength(8) ]],
